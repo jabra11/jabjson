@@ -7,6 +7,22 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(jabjson INTERFACE)
 target_include_directories(jabjson INTERFACE include)
 
-add_subdirectory(test)
-add_subdirectory(benchmark)
 add_subdirectory(tools)
+
+
+# build test if desired
+if (${JAB_BUILD_TEST})
+    message("Test: enabled.")
+    add_subdirectory(test)
+else()
+    message("Test: disabled.")
+endif()
+
+# build benchmark if desired
+if (${JAB_BUILD_BENCHMARK})
+    message("Benchmark: enabled.")
+    add_subdirectory(benchmark)
+else()
+    message("Benchmark: disabled.")
+endif()
+
